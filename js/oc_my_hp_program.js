@@ -10,6 +10,7 @@ jQuery(document).ready(function(){
     //Bind to Tags
     oc_my_hp_program_bind_tags();
     bind_render_program_events();
+    bind_clear_my_program();
     //Generate the display view.
     my_program_url = Drupal.settings.hp_my_program.target_url;
     var old_program = jQuery.cookie("hp_my_program");
@@ -74,8 +75,16 @@ function bind_render_program_events()
        window.location = my_program_url + "/" + nodes;
     })
 }
-function clear_my_program()
+/*
+ * binds clear program cart event.
+ */
+function bind_clear_my_program()
 {
-    selected_nodes = [];
-    jQuery.cookie("hp_my_program", null, { expires: 7,path: '/' });
+    jQuery('clear-my-program-btn').click(function()
+    {
+        selected_nodes = [];
+        jQuery.cookie("hp_my_program", null, { expires: 7,path: '/' });
+        update_program_cart_count();
+    });
+
 }
