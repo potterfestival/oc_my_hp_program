@@ -1,0 +1,11 @@
+name = oc my hp program
+description = Lets you add nodes to a event list
+package = OC
+core = 7.x
+configure = admin/hpevent/config
+
+
+; Information added by Drupal.org packaging script on 2015-11-06
+version = "7.x-1.0"
+core = "7.x"
+

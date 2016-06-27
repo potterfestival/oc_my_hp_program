@@ -1,0 +1,36 @@
+ <?php
+include(drupal_get_path('module', 'oc_my_hp_program').'/oc_my_program.admin.php');
+/**
+ * Implementation of hook_init().
+ */
+function oc_my_hp_program_init() {
+  drupal_add_js(drupal_get_path('module', 'oc_my_hp_program') . '/js/oc_my_hp_program.js');
+  drupal_add_css(drupal_get_path('module', 'oc_my_hp_program') . '/css/oc_my_hp_program_oversigt.css');
+  drupal_add_library('system', 'jquery.cookie');
+  drupal_add_js(array('hp_my_program' => array('target_url' => variable_get('hp_program_target',''))), 'setting');
+  
+}
+/*
+ * Menu
+ */
+function oc_my_hp_program_menu()
+{
+     $items['admin/hpevent/config'] = array(
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('oc_my_program_admin'),
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+    );
+    return $items;
+}
+/*
+ * Add the buttons to the node views
+ */
+function oc_my_hp_program_node_view_alter(&$build)
+{
+    $test = 0;
+}
+function oc_my_hp_program_render_program()
+{
+    
+}
