@@ -84,7 +84,7 @@ function bind_clear_my_program()
     {
         selected_nodes = [];
         jQuery.cookie("hp_my_program", null, { expires: 7,path: '/' });
-        location.reload();
+        window.location = my_program_url
     });
 
 }
