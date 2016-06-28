@@ -12,13 +12,14 @@ jQuery(document).ready(function(){
     oc_my_hp_program_bind_tags();
     bind_render_program_events();
     bind_clear_my_program();
+    bind_remove_single_item();
     //Generate the display view.
     my_program_url = Drupal.settings.hp_my_program.target_url;
     var old_program = jQuery.cookie("hp_my_program");
     if(old_program != null)
     {
         selected_nodes = JSON.parse(old_program);
-        Hide_old_added();
+        add_remove_fron_program();
         update_program_cart_count();
     }
     
@@ -33,10 +34,9 @@ jQuery(document).ready(function(){
  */
 function oc_my_hp_program_bind_tags()
 {
-    jQuery('.oc-my-hp-program-button').click(function(){
+    jQuery('body').on('click','.oc-my-hp-program-button',function(){
         var nid = parseInt(jQuery(this.parentNode).find('.oc-my-hp-program-id').text());
         Add_to_program(nid);
-        jQuery(this.parentNode).fadeOut();
         
     });
 }
@@ -51,6 +51,10 @@ function Add_to_program(nid)
         selected_nodes.push(nid);
         jQuery.cookie("hp_my_program", JSON.stringify(selected_nodes), { expires: 7,path: '/' });
         update_program_cart_count();
+        var hide_me = jQuery('.oc-my-hp-program-id:contains('+nid+')');
+        var link_btn = hide_me.parent().find('a');
+        link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button');
+        link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
     }
     else
     {
@@ -58,6 +62,26 @@ function Add_to_program(nid)
         jQuery('#my_hp_program_info').find('.modal-body').text('arrangement er allerede tilføjet.');
         jQuery('#my_hp_program_info').modal('show');
     }
+}
+/*
+ * 
+ * Handles removing nodes from program
+ */
+function remove_from_program(nid)
+{
+    var index = selected_nodes.indexOf(nid);
+    selected_nodes.splice(index, 1);
+    jQuery.cookie("hp_my_program", JSON.stringify(selected_nodes), { expires: 7,path: '/' });
+    jQuery('.oc_my_program_cart_btn_count').toggleClass('red-flash');
+    setTimeout(function(){
+            jQuery('.oc_my_program_cart_btn_count').text(selected_nodes.length);
+            jQuery('.oc_my_program_cart_btn_count').toggleClass('red-flash');
+        },700);
+    
+    var hide_me = jQuery('.oc-my-hp-program-id:contains('+nid+')');
+    var link_btn = hide_me.parent().find('a');
+    link_btn.toggleClass('oc-my-hp-program-remove-button ').toggleClass('oc-my-hp-program-button');
+    link_btn.find('i').toggleClass('fa-minus-circle').toggleClass('fa-plus-circle');
 }
 /*
  * Updates the cart button
@@ -97,20 +121,37 @@ function bind_clear_my_program()
     });
 
 }
+/*
+ * 
+ */
+function bind_remove_single_item()
+{
+    jQuery('body').on('click','.oc-my-hp-program-remove-button',function(){
+        var nid = parseInt(jQuery(this.parentNode).find('.oc-my-hp-program-id').text());
+        remove_from_program(nid);
+    })
+}
+/*
+ * 
+ */
 function AddModal()
 {
     var modal = jQuery('<div id="my_hp_program_info" class="modal fade" role="dialog"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Hpfestival</h4> </div> <div class="modal-body"> </div> <div class="modal-footer"> </div> </div> </div> </div>');
     jQuery('body').append(modal);
 }
-function Hide_old_added()
+/*
+ * 
+ */
+function add_remove_fron_program()
 {
-    debugger;
     var elements = jQuery('.oc-my-hp-program-wrap');
     if(elements.length)
     {
         jQuery.each(selected_nodes,function(index,value){
             var hide_me = jQuery('.oc-my-hp-program-id:contains('+value+')');
-            hide_me.parent().hide();
+            var link_btn = hide_me.parent().find('a');
+            link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button');
+            link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
         })
     }
 }
