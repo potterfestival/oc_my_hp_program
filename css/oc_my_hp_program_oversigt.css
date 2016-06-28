@@ -19,7 +19,10 @@ i {
     right:-6px;
     padding:5px;
 }
-
+.green-flash
+{
+    background-color:green !important;
+}
 /*
 * Add to cart btn
 */

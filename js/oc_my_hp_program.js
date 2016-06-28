@@ -8,6 +8,7 @@ var my_program_url = null;
 
 jQuery(document).ready(function(){
     //Bind to Tags
+    AddModal();
     oc_my_hp_program_bind_tags();
     bind_render_program_events();
     bind_clear_my_program();
@@ -45,14 +46,15 @@ function Add_to_program(nid)
 {
     if(selected_nodes.indexOf(nid) === -1)
     {
-        alert('Added to program');
         selected_nodes.push(nid);
         jQuery.cookie("hp_my_program", JSON.stringify(selected_nodes), { expires: 7,path: '/' });
         update_program_cart_count();
     }
     else
     {
-        alert('Already added');
+        jQuery('#my_hp_program_info').find('.modal-title').text('Desværre');
+        jQuery('#my_hp_program_info').find('.modal-body').text('arrangement er allerede tilføjet.');
+        jQuery('#my_hp_program_info').modal('show');
     }
 }
 /*
@@ -63,7 +65,12 @@ function Add_to_program(nid)
  */
 function update_program_cart_count()
 {
-    jQuery('.oc_my_program_cart_btn_count').text(selected_nodes.length);
+    jQuery('.oc_my_program_cart_btn_count').toggleClass('green-flash');
+    setTimeout(function(){
+            jQuery('.oc_my_program_cart_btn_count').text(selected_nodes.length);
+            jQuery('.oc_my_program_cart_btn_count').toggleClass('green-flash');
+        },600);
+    
 }
 /*
  * Calls drupals to render the needed html to display the user his program
@@ -87,4 +94,9 @@ function bind_clear_my_program()
         window.location = my_program_url
     });
 
+}
+function AddModal()
+{
+    var modal = jQuery('<div id="my_hp_program_info" class="modal fade" role="dialog"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Hpfestival</h4> </div> <div class="modal-body"> </div> <div class="modal-footer"> </div> </div> </div> </div>');
+    jQuery('body').append(modal);
 }

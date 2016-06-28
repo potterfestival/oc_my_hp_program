@@ -23,14 +23,3 @@ function oc_my_hp_program_menu()
     );
     return $items;
 }
-/*
- * Add the buttons to the node views
- */
-function oc_my_hp_program_node_view_alter(&$build)
-{
-    $test = 0;
-}
-function oc_my_hp_program_render_program()
-{
-    
-}
