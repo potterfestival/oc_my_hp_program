@@ -18,6 +18,7 @@ jQuery(document).ready(function(){
     if(old_program != null)
     {
         selected_nodes = JSON.parse(old_program);
+        Hide_old_added();
         update_program_cart_count();
     }
     
@@ -35,6 +36,7 @@ function oc_my_hp_program_bind_tags()
     jQuery('.oc-my-hp-program-button').click(function(){
         var nid = parseInt(jQuery(this.parentNode).find('.oc-my-hp-program-id').text());
         Add_to_program(nid);
+        jQuery(this.parentNode).fadeOut();
         
     });
 }
@@ -69,7 +71,7 @@ function update_program_cart_count()
     setTimeout(function(){
             jQuery('.oc_my_program_cart_btn_count').text(selected_nodes.length);
             jQuery('.oc_my_program_cart_btn_count').toggleClass('green-flash');
-        },600);
+        },700);
     
 }
 /*
@@ -99,4 +101,16 @@ function AddModal()
 {
     var modal = jQuery('<div id="my_hp_program_info" class="modal fade" role="dialog"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Hpfestival</h4> </div> <div class="modal-body"> </div> <div class="modal-footer"> </div> </div> </div> </div>');
     jQuery('body').append(modal);
+}
+function Hide_old_added()
+{
+    debugger;
+    var elements = jQuery('.oc-my-hp-program-wrap');
+    if(elements.length)
+    {
+        jQuery.each(selected_nodes,function(index,value){
+            var hide_me = jQuery('.oc-my-hp-program-id:contains('+value+')');
+            hide_me.parent().hide();
+        })
+    }
 }
