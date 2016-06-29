@@ -9,6 +9,21 @@ i {
     text-align:center;
     vertical-align:middle;
 }
+.oc-my-hp-program-wrap a
+{
+    color: black;
+    cursor: pointer;
+    font-size: 17px;
+}
+.oc-my-hp-program-wrap a.oc-my-hp-program-button:hover
+{
+    color: green;
+}
+.oc-my-hp-program-wrap a.oc-my-hp-program-remove-button:hover
+{
+    color: red;
+    
+}
 .badge{
     width: auto;
     height: auto;

@@ -150,7 +150,7 @@ function add_remove_fron_program()
         jQuery.each(selected_nodes,function(index,value){
             var hide_me = jQuery('.oc-my-hp-program-id:contains('+value+')');
             var link_btn = hide_me.parent().find('a');
-            link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button');
+            link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button').attr('title','Fjern fra mit program');
             link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
         })
     }
