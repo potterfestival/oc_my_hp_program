@@ -11,17 +11,17 @@ i {
 }
 .oc-my-hp-program-wrap a
 {
-    color: black;
+    color: grey;
     cursor: pointer;
     font-size: 17px;
 }
 .oc-my-hp-program-wrap a.oc-my-hp-program-button:hover
 {
-    color: green;
+    color: #be1e2d;
 }
 .oc-my-hp-program-wrap a.oc-my-hp-program-remove-button
 {
-    color: green;
+    color: #be1e2d;
     
 }
 .badge{
