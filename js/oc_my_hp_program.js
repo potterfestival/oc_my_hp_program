@@ -7,6 +7,7 @@ var selected_nodes = [];
 var my_program_url = null;
 
 jQuery(document).ready(function(){
+    debugger;
     //Bind to Tags
     AddModal();
     oc_my_hp_program_bind_tags();
@@ -54,7 +55,7 @@ function Add_to_program(nid)
         var hide_me = jQuery('.oc-my-hp-program-id:contains('+nid+')');
         var link_btn = hide_me.parent().find('a');
         link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button');
-        link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
+        //link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
     }
     else
     {
@@ -81,7 +82,7 @@ function remove_from_program(nid)
     var hide_me = jQuery('.oc-my-hp-program-id:contains('+nid+')');
     var link_btn = hide_me.parent().find('a');
     link_btn.toggleClass('oc-my-hp-program-remove-button ').toggleClass('oc-my-hp-program-button');
-    link_btn.find('i').toggleClass('fa-minus-circle').toggleClass('fa-plus-circle');
+    //link_btn.find('i').toggleClass('fa-minus-circle').toggleClass('fa-plus-circle');
 }
 /*
  * Updates the cart button
@@ -136,8 +137,9 @@ function bind_remove_single_item()
  */
 function AddModal()
 {
-    var modal = jQuery('<div id="my_hp_program_info" class="modal fade" role="dialog"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Hpfestival</h4> </div> <div class="modal-body"> </div> <div class="modal-footer"> </div> </div> </div> </div>');
+    var modal = jQuery('<div id="my_hp_program_info" class="modal fade hidden-print" role="dialog"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Hpfestival</h4> </div> <div class="modal-body"> </div> <div class="modal-footer"> </div> </div> </div> </div>');
     jQuery('body').append(modal);
+    //modal.toggle();
 }
 /*
  * 
@@ -151,7 +153,7 @@ function add_remove_fron_program()
             var hide_me = jQuery('.oc-my-hp-program-id:contains('+value+')');
             var link_btn = hide_me.parent().find('a');
             link_btn.toggleClass('oc-my-hp-program-button').toggleClass('oc-my-hp-program-remove-button').attr('title','Fjern fra mit program');
-            link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
+            //link_btn.find('i').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
         })
     }
 }
