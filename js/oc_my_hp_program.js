@@ -85,7 +85,6 @@ function remove_from_program(nid)
     /*
      * Hide the entire event if we are on the program page.
      */
-    debugger;
     var is_my_program_view = jQuery('.view-display-id-hp_events_my_program');
     if(is_my_program_view.length != 0)
     {
