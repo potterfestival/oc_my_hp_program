@@ -89,7 +89,7 @@ function remove_from_program(nid)
     var is_my_program_view = jQuery('.view-display-id-hp_events_my_program');
     if(is_my_program_view.length != 0)
     {
-        hide_me.parent().parent().parent().remove();
+        hide_me.parent().parent().parent().parent().remove();
     }
 }
 /*
