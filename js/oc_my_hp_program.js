@@ -22,7 +22,6 @@ jQuery(document).ready(function(){
         add_remove_fron_program();
         update_program_cart_count();
     }
-    
 });
 /*
  * Binds to the button tags on nodes
@@ -82,6 +81,16 @@ function remove_from_program(nid)
     var link_btn = hide_me.parent().find('a');
     link_btn.toggleClass('oc-my-hp-program-remove-button ').toggleClass('oc-my-hp-program-button').attr('title',Drupal.t('Fjern fra mit program'));
     //link_btn.find('i').toggleClass('fa-minus-circle').toggleClass('fa-plus-circle');
+    
+    /*
+     * Hide the entire event if we are on the program page.
+     */
+    debugger;
+    var is_my_program_view = jQuery('.view-display-id-hp_events_my_program');
+    if(is_my_program_view.length != 0)
+    {
+        hide_me.parent().parent().parent().remove();
+    }
 }
 /*
  * Updates the cart button
