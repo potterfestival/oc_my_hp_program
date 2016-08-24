@@ -121,7 +121,7 @@ function bind_render_program_events()
  */
 function bind_clear_my_program()
 {
-    jQuery('.clear-my-program-btn').click(function()
+    jQuery('.hp-clear-my-program-btn').click(function()
     {
         selected_nodes = [];
         jQuery.cookie("hp_my_program", null, { expires: 7,path: '/' });
