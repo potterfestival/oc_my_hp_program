@@ -49,3 +49,11 @@ i {
 {
     background: #b4a486 none repeat scroll 0 0;
 }
+
+/*
+* Clear my program button
+*/
+.hp-clear-my-program-btn
+{
+    color: #b4a486
+}
